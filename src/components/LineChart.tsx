@@ -10,7 +10,8 @@ type Measurement = {
 }
 
 type LineChartProps = {
-  data: Measurement[]
+  data: Measurement[],
+  id: number
 }
 
 function LineChart(props: LineChartProps) {
@@ -21,20 +22,8 @@ function LineChart(props: LineChartProps) {
     am4core.useTheme(am4themes_animated);
     // Themes end
 
-    let chart = am4core.create("chartdiv", am4charts.XYChart);
+    let chart = am4core.create(`chartdiv${props.id}`, am4charts.XYChart);
 
-    let data = [];
-    let value = 50;
-    for(var i = 0; i < 300; i++){
-      let date = new Date();
-      date.setHours(0,0,0,0);
-      date.setDate(i);
-      value -= Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
-      data.push({date:date, value: value});
-    }
-
-    console.log("Prop data:", props.data);
-    console.log("Default data:", data);
     chart.data = props.data;
 
     // Create axes
@@ -61,7 +50,7 @@ function LineChart(props: LineChartProps) {
   }, [props.data]);
 
   return (
-    <div id="chartdiv" style={{ width: "100%", height: "500px" }}></div>
+    <div id={`chartdiv${props.id}`} style={{ width: "100%", height: "500px" }}></div>
   )
 }
 

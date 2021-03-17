@@ -61,6 +61,26 @@ function SensorPage() {
       const sortedData = filteredData.sort((a, b) => {
         return new Date(b.date).getTime() - new Date(a.date).getTime();
       })
+      console.log("pH:", sortedData);
+      return sortedData;
+    } else {
+      return []
+    }
+  }
+
+  const getTurbidity = () => {
+    if (data) {
+      const filteredData = data.map(obj => {
+        const newObj: Measurement = {
+          date: new Date(obj.timestamp),
+          value: obj.turbidity
+        };
+        return newObj;
+      });
+      const sortedData = filteredData.sort((a, b) => {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      })
+      console.log("turbidity:", sortedData);
       return sortedData;
     } else {
       return []
@@ -74,7 +94,8 @@ function SensorPage() {
         (
         <div>
           <Heading title="Sensornavn" subtitle={`Koordinater: ${latitude}, ${longitude}`}/>
-          <LineChart data={getPh()} />
+          <LineChart data={getPh()} id={1}/>
+          <LineChart data={getTurbidity()} id={2} />
         </div>
         ) : (
           <h1></h1>
