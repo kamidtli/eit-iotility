@@ -4,7 +4,7 @@ import {
   useParams
 } from "react-router-dom";
 import Heading from '../components/Heading';
-import LineChart from '../components/LineChart';
+import ParamGraph from "../components/ParamGraph";
 
 import sensorData from '../data.json';
 
@@ -61,7 +61,6 @@ function SensorPage() {
       const sortedData = filteredData.sort((a, b) => {
         return new Date(b.date).getTime() - new Date(a.date).getTime();
       })
-      console.log("pH:", sortedData);
       return sortedData;
     } else {
       return []
@@ -80,7 +79,23 @@ function SensorPage() {
       const sortedData = filteredData.sort((a, b) => {
         return new Date(b.date).getTime() - new Date(a.date).getTime();
       })
-      console.log("turbidity:", sortedData);
+      return sortedData;
+    } else {
+      return []
+    }
+  }
+  const getTemperature = () => {
+    if (data) {
+      const filteredData = data.map(obj => {
+        const newObj: Measurement = {
+          date: new Date(obj.timestamp),
+          value: obj.temperature
+        };
+        return newObj;
+      });
+      const sortedData = filteredData.sort((a, b) => {
+        return new Date(b.date).getTime() - new Date(a.date).getTime();
+      })
       return sortedData;
     } else {
       return []
@@ -94,8 +109,9 @@ function SensorPage() {
         (
         <div>
           <Heading title="Sensornavn" subtitle={`Koordinater: ${latitude}, ${longitude}`}/>
-          <LineChart data={getPh()} id={1}/>
-          <LineChart data={getTurbidity()} id={2} />
+          <ParamGraph title="pH" data={getPh()} id={1}/>
+          <ParamGraph title="Turbiditet" data={getTurbidity()} id={2}/>
+          <ParamGraph title="Temperatur" data={getTemperature()} id={3}/>
         </div>
         ) : (
           <h1></h1>
