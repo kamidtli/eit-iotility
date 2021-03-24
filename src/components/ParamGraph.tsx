@@ -2,15 +2,31 @@ import { Card, CardContent, CardHeader } from '@material-ui/core';
 import styled from 'styled-components';
 import LineChart from './LineChart';
 
-type Measurement = {
+type ParamGraphProps = {
+  title: string,
+  data: IParamMeasurement[],
+  id: number
+}
+
+interface IParamMeasurement {
+  timestamp: Date,
+  parameter: string,
+  value: string | number
+}
+
+interface ChartData {
   date: Date,
   value: number
 }
 
-type ParamGraphProps = {
-  title: string,
-  data: Measurement[],
-  id: number
+const processData = (data : IParamMeasurement[]) : ChartData[] => {
+  return data.map(measurement => {
+    const processed : ChartData = {
+      date: measurement.timestamp,
+      value: measurement.value as number
+    }
+    return processed;
+  })
 }
 
 function ParamGraph(props: ParamGraphProps) {
@@ -19,7 +35,7 @@ function ParamGraph(props: ParamGraphProps) {
     <CustomCard>
       <CardContent>
         <CardHeader title={props.title} />
-        <LineChart data={props.data} id={props.id} />
+        <LineChart data={processData(props.data)} id={props.id} />
       </CardContent>
     </CustomCard>
   )

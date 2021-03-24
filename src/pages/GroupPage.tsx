@@ -46,15 +46,24 @@ function SensorPage() {
 
   useEffect(() => {
     const sensors: ISensors[] = fetchGroupSensors(id);
-    let allData: ISensorData[] = [];
-    sensors.forEach((s) => {
-      const sensorData = fetchSensorData(s.id);
-      if (sensorData.length > 0) {
-        allData = allData.concat(sensorData);
-      }
-    })
-    setGroupSensors(sensors);
-    setData(allData);
+    // let test = [];
+    // console.log(sensorData);
+    // let multipleData = sensorData.map(measurement => () => {
+    //   return {
+    //     date: new Date(measurement.timestamp),
+        
+    //   }
+    // });
+    // let allData: ISensorData[] = [];
+    // sensors.forEach((s) => {
+    //   const sensorData = fetchSensorData(s.id);
+    //   if (sensorData.length > 0) {
+    //     allData = allData.concat(sensorData);
+    //   }
+    //   })
+    // })
+    // setGroupSensors(sensors);
+    // setData(allData);
   }, [id])
 
   const fetchGroupSensors = (groupId: string) => {
@@ -147,7 +156,7 @@ function SensorPage() {
         <div>
           <Heading title="Gruppeoversikt" subtitle={`Gruppe: ${id}`}/>
           <Grid container spacing={3}>
-            <Grid item xs={12} lg={6}>
+            {/* <Grid item xs={12} lg={6}>
               <ParamGraph title="pH" data={getPh()} id={1}/>
             </Grid>
             <Grid item xs={12} lg={6}>
@@ -158,7 +167,7 @@ function SensorPage() {
             </Grid>
             <Grid item xs={12} lg={6}>
               <ParamGraph title="Konduktivitet" data={getConductivity()} id={4}/>
-            </Grid>
+            </Grid> */}
           </Grid>
         </div>
         ) : (

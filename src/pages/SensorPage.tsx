@@ -7,12 +7,7 @@ import { Grid } from '@material-ui/core';
 import Heading from '../components/Heading';
 import ParamGraph from "../components/ParamGraph";
 
-import sensorData from '../data.json';
-
-type Measurement = {
-  date: Date,
-  value: number
-}
+import { getAllSensorMeasurementsById } from "../utils";
 
 interface SensorPageProps {
   id: string
@@ -29,6 +24,12 @@ interface ISensorData {
   turbidity: number
 }
 
+interface IParamMeasurement {
+  timestamp: Date,
+  parameter: string,
+  value: string | number
+}
+
 function SensorPage() {
 
   const { id } = useParams<SensorPageProps>();
@@ -37,7 +38,7 @@ function SensorPage() {
   const [data, setData] = useState<ISensorData[] | null>();
 
   useEffect(() => {
-    const allData = fetchSensorData(id);
+    const allData = getAllSensorMeasurementsById(id);
     if (allData.length > 0) {
       setLatitude(parseFloat(allData[0].latitude.toFixed(4)));
       setLongitude(parseFloat(allData[0].longitude.toFixed(4)));
@@ -45,78 +46,22 @@ function SensorPage() {
     }
   }, [id])
 
-  const fetchSensorData = (sensorId: string) : ISensorData[] => {
-    const filteredData: ISensorData[] = sensorData.data.filter(s => s.id === sensorId);
-    return filteredData;
+  const sortParamMeasurementsByDate = (data: IParamMeasurement[]) => {
+    return data.sort((a, b) => {
+      return new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime();
+    });
   }
 
-  const getPh = () => {
+  const getParam = (param: string) => {
     if (data) {
-      const filteredData = data.map(obj => {
-        const newObj: Measurement = {
-          date: new Date(obj.timestamp),
-          value: obj.pH
-        };
-        return newObj;
+      const paramMeasurements = data.map((m) => {
+        return {
+          timestamp: new Date(m.timestamp),
+          parameter: param,
+          value: m[param as keyof ISensorData]
+        }
       });
-      const sortedData = filteredData.sort((a, b) => {
-        return new Date(b.date).getTime() - new Date(a.date).getTime();
-      })
-      return sortedData;
-    } else {
-      return []
-    }
-  }
-
-  const getTurbidity = () => {
-    if (data) {
-      const filteredData = data.map(obj => {
-        const newObj: Measurement = {
-          date: new Date(obj.timestamp),
-          value: obj.turbidity
-        };
-        return newObj;
-      });
-      const sortedData = filteredData.sort((a, b) => {
-        return new Date(b.date).getTime() - new Date(a.date).getTime();
-      })
-      return sortedData;
-    } else {
-      return []
-    }
-  }
-  
-  const getTemperature = () => {
-    if (data) {
-      const filteredData = data.map(obj => {
-        const newObj: Measurement = {
-          date: new Date(obj.timestamp),
-          value: obj.temperature
-        };
-        return newObj;
-      });
-      const sortedData = filteredData.sort((a, b) => {
-        return new Date(b.date).getTime() - new Date(a.date).getTime();
-      })
-      return sortedData;
-    } else {
-      return []
-    }
-  }
-
-  const getConductivity = () => {
-    if (data) {
-      const filteredData = data.map(obj => {
-        const newObj: Measurement = {
-          date: new Date(obj.timestamp),
-          value: obj.conductivity
-        };
-        return newObj;
-      });
-      const sortedData = filteredData.sort((a, b) => {
-        return new Date(b.date).getTime() - new Date(a.date).getTime();
-      })
-      return sortedData;
+      return sortParamMeasurementsByDate(paramMeasurements);
     } else {
       return []
     }
@@ -131,16 +76,16 @@ function SensorPage() {
           <Heading title="Sensornavn" subtitle={`Koordinater: ${latitude}, ${longitude}`}/>
           <Grid container spacing={3}>
             <Grid item xs={12} lg={6}>
-              <ParamGraph title="pH" data={getPh()} id={1}/>
+              <ParamGraph title="pH" data={getParam("pH")} id={1}/>
             </Grid>
             <Grid item xs={12} lg={6}>
-              <ParamGraph title="Turbiditet" data={getTurbidity()} id={2}/>
+              <ParamGraph title="Turbiditet" data={getParam("turbidity")} id={2}/>
             </Grid>
             <Grid item xs={12} lg={6}>
-              <ParamGraph title="Temperatur" data={getTemperature()} id={3}/>
+              <ParamGraph title="Temperatur" data={getParam("temperature")} id={3}/>
             </Grid>
             <Grid item xs={12} lg={6}>
-              <ParamGraph title="Konduktivitet" data={getConductivity()} id={4}/>
+              <ParamGraph title="Konduktivitet" data={getParam("conductivity")} id={4}/>
             </Grid>
           </Grid>
         </div>
