@@ -42,10 +42,10 @@ function SensorPage() {
 
   const { id } = useParams<SensorPageProps>();
   const [data, setData] = useState<ISensorData[] | null>();
-  const [groupSensors, setGroupSensors] = useState<ISensors | null>();
+  const [groupSensors, setGroupSensors] = useState<ISensors[] | null>();
 
   useEffect(() => {
-    const sensors = fetchGroupSensors(id);
+    const sensors: ISensors[] = fetchGroupSensors(id);
     let allData: ISensorData[] = [];
     sensors.forEach((s) => {
       const sensorData = fetchSensorData(s.id);
