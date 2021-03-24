@@ -18,7 +18,7 @@ function HomePage() {
       <Heading title="Sensorer" subtitle="Klikk på en sensor for mer informasjon" />
       {sensors.map(s => {
         return (
-        <Link to={`/sensors/${s.id}`}>
+        <Link to={`/sensors/${s.id}`} key={s.id}>
           <Sensor id={s.id} latitude={s.latitude} longitude={s.longitude} />
         </Link>
         )
@@ -26,7 +26,7 @@ function HomePage() {
       <Heading title="Sensorgrupper" subtitle="Klikk på en gruppe for mer informasjon" />
       {unique_group_ids.map(s => {
         return (
-        <Link to={`/groups/${s}`}>
+        <Link to={`/groups/${s}`} key={s}>
           {s}
         </Link>
         )
