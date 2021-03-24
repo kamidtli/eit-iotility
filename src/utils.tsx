@@ -2,6 +2,7 @@
 
 import DATA_DB from './data.json';
 import SENSORS_DB from './sensors.json';
+import { IMeasurement, IParamMeasurement } from './types';
 
 export function getAllSensors() {
   return SENSORS_DB.data;
@@ -13,24 +14,6 @@ export function getSensorById(id: string) {
 
 export function getAllSensorMeasurementsById(id: string) : IMeasurement[] {
   return DATA_DB.data.filter(measurement => measurement.id === id);
-}
-
-interface IMeasurement {
-  id: string;
-  group_id: string;
-  latitude: number;
-  longitude: number;
-  timestamp: string;
-  pH: number;
-  temperature: number;
-  conductivity: number;
-  turbidity: number;
-}
-
-interface IParamMeasurement {
-  timestamp: Date,
-  parameter: string,
-  value: string | number
 }
 
 export function getAllParamMeasurementsById(id: string, param: string) : IParamMeasurement[] {

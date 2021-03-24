@@ -3,13 +3,9 @@ import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import { useEffect } from "react";
+import { ChartData } from "../types";
 
-interface ChartData {
-  date: Date,
-  value: number
-}
-
-type LineChartProps = {
+interface LineChartProps {
   data: ChartData[],
   id: number
 }

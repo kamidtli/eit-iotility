@@ -1,22 +1,12 @@
 import { Card, CardContent, CardHeader } from '@material-ui/core';
 import styled from 'styled-components';
 import LineChart from './LineChart';
+import { IParamMeasurement, ChartData } from '../types';
 
-type ParamGraphProps = {
+interface ParamGraphProps {
   title: string,
   data: IParamMeasurement[],
   id: number
-}
-
-interface IParamMeasurement {
-  timestamp: Date,
-  parameter: string,
-  value: string | number
-}
-
-interface ChartData {
-  date: Date,
-  value: number
 }
 
 const processData = (data : IParamMeasurement[]) : ChartData[] => {

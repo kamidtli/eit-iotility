@@ -6,28 +6,11 @@ import {
 import { Grid } from '@material-ui/core';
 import Heading from '../components/Heading';
 import ParamGraph from "../components/ParamGraph";
-
+import { IMeasurement, IParamMeasurement } from '../types';
 import { getAllSensorMeasurementsById } from "../utils";
 
 interface SensorPageProps {
   id: string
-}
-
-interface ISensorData {
-  id: string,
-  latitude: number,
-  longitude: number,
-  timestamp: string,
-  pH: number,
-  temperature: number,
-  conductivity: number,
-  turbidity: number
-}
-
-interface IParamMeasurement {
-  timestamp: Date,
-  parameter: string,
-  value: string | number
 }
 
 function SensorPage() {
@@ -35,7 +18,7 @@ function SensorPage() {
   const { id } = useParams<SensorPageProps>();
   const [latitude, setLatitude] = useState<number>(0);
   const [longitude, setLongitude] = useState<number>(0);
-  const [data, setData] = useState<ISensorData[] | null>();
+  const [data, setData] = useState<IMeasurement[] | null>();
 
   useEffect(() => {
     const allData = getAllSensorMeasurementsById(id);
@@ -58,7 +41,7 @@ function SensorPage() {
         return {
           timestamp: new Date(m.timestamp),
           parameter: param,
-          value: m[param as keyof ISensorData]
+          value: m[param as keyof IMeasurement]
         }
       });
       return sortParamMeasurementsByDate(paramMeasurements);
