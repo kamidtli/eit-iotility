@@ -22,6 +22,8 @@ function LineChart(props: LineChartProps) {
     am4core.useTheme(am4themes_animated);
     // Themes end
 
+    am4core.options.autoDispose = true;
+
     let chart = am4core.create(`chartdiv${props.id}`, am4charts.XYChart);
 
     chart.data = props.data;
@@ -30,7 +32,7 @@ function LineChart(props: LineChartProps) {
     let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
     dateAxis.renderer.minGridDistance = 60;
 
-    let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+    chart.yAxes.push(new am4charts.ValueAxis());
 
     // Create series
     let series = chart.series.push(new am4charts.LineSeries());
