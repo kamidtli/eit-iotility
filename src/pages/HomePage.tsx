@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import Sensor from '../components/Sensor';
-import Heading from '../components/Heading';
+import Sensor from 'components/Sensor';
+import Heading from 'components/Heading';
 
-import sensorList from '../sensors.json';
+import sensorList from 'sensors.json';
 
 function HomePage() {
 

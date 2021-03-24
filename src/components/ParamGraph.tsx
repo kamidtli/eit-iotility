@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader } from '@material-ui/core';
 import styled from 'styled-components';
-import LineChart from './LineChart';
-import { IParamMeasurement, ChartData } from '../types';
+import LineChart from 'components/LineChart';
+import { IParamMeasurement, ChartData } from 'types';
 
 interface ParamGraphProps {
   title: string,

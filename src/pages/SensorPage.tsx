@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Link,
   useParams
 } from "react-router-dom";
 import { Grid } from '@material-ui/core';
-import Heading from '../components/Heading';
-import ParamGraph from "../components/ParamGraph";
-import { IMeasurement, IParamMeasurement } from '../types';
-import { getAllSensorMeasurementsById } from "../utils";
+import Heading from 'components/Heading';
+import ParamGraph from "components/ParamGraph";
+import { IMeasurement, IParamMeasurement } from 'types';
+import { getAllSensorMeasurementsById } from "utils";
 
 interface SensorPageProps {
   id: string

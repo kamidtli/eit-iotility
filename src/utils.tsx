@@ -1,8 +1,8 @@
 
 
-import DATA_DB from './data.json';
-import SENSORS_DB from './sensors.json';
-import { IMeasurement, IParamMeasurement } from './types';
+import DATA_DB from 'data.json';
+import SENSORS_DB from 'sensors.json';
+import { IMeasurement, IParamMeasurement } from 'types';
 
 export function getAllSensors() {
   return SENSORS_DB.data;
