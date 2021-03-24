@@ -23,7 +23,14 @@ export interface IParamMeasurement {
   value: string | number
 }
 
-export interface ChartData {
+export interface IChartData {
   date: Date,
   value: number
+}
+
+export interface IMultipleChartData {
+  date: Date,
+  value1?: number,
+  value2?: number,
+  value3?: number
 }

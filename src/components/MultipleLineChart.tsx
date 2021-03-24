@@ -3,14 +3,14 @@ import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import { useEffect } from "react";
-import { IChartData } from "types";
+import { IMultipleChartData } from "types";
 
 interface LineChartProps {
-  data: IChartData[],
+  data: IMultipleChartData[],
   id: number
 }
 
-function LineChart(props: LineChartProps) {
+function MultipleLineChart(props: LineChartProps) {
 
   useEffect(() => {
     /* Chart code */
@@ -52,4 +52,4 @@ function LineChart(props: LineChartProps) {
   )
 }
 
-export default LineChart;
+export default MultipleLineChart;
