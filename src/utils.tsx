@@ -28,9 +28,13 @@ export function getAllParamMeasurementsById(id: string, param: string) : IParamM
   return paramMeasurements;
 }
 
-export default { 
-  getAllSensors, 
-  getSensorById, 
-  getAllSensorMeasurementsById, 
-  getAllParamMeasurementsById
-};
+export function getAllGroupIds() : string[] {
+  const groupIds = SENSORS_DB.data.filter(s => s.group_id !== "0").map(s => s.group_id)
+  return removeDuplicates(groupIds);
+}
+
+function removeDuplicates<T>(arr : T[]) : T[] {
+  return arr.filter((elem, index, self) => {
+    return index === self.indexOf(elem);
+  });
+}

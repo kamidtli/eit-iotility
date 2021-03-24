@@ -1,3 +1,10 @@
+export interface ISensor {
+  id: string,
+  group_id: string,
+  latitude: number,
+  longitude: number
+}
+
 export interface IMeasurement {
   id: string;
   group_id: string;
