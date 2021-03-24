@@ -73,7 +73,7 @@ function SensorPage() {
           </Grid>
         </div>
         ) : (
-          <h1></h1>
+          <h1>Fant ikke noe data for denne sensoren.</h1>
         )}
     </div>
   );

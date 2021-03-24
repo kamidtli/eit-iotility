@@ -7,7 +7,7 @@ import sensorList from 'sensors.json';
 function HomePage() {
 
   const sensors = sensorList.data;
-  const sensors_with_group = sensorList.data.filter(s => s.group_id != "0");
+  const sensors_with_group = sensorList.data.filter(s => s.group_id !== "0");
   const group_ids = sensors_with_group.map(s => s.group_id);
   const unique_group_ids = group_ids.filter((elem, index, self) => {
     return index === self.indexOf(elem);
