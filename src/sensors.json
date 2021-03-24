@@ -1,29 +1,34 @@
 {
   "data": [
     {
-      "id": "58ddc4a0ed724b9b9d78e4bf1c2bd727",
-      "latitude": 63.413363912158616,
-      "longitude": 10.362359466738157
+      "id": "80c42ac970884fb487a8b5c5cd48cfcc",
+      "group_id": "77ce3e9477c744209486ae1cab55371a",
+      "latitude": 63.31846440077218,
+      "longitude": 10.577796237063733
     },
     {
-      "id": "508cb3097c84472e9d96d604cc01bc51",
-      "latitude": 63.35270799478568,
-      "longitude": 10.50470333998255
+      "id": "424c72740df748a790a4962e8a0e5e0e",
+      "group_id": "77ce3e9477c744209486ae1cab55371a",
+      "latitude": 63.2907815224496,
+      "longitude": 10.628086883302208
     },
     {
-      "id": "51dd309c43ef4bf4bf1301530496f812",
-      "latitude": 63.443810387204564,
-      "longitude": 10.436548084135215
+      "id": "e5cd7358fa2242e5be5ca329cd89ba90",
+      "group_id": "77ce3e9477c744209486ae1cab55371a",
+      "latitude": 63.31730383924696,
+      "longitude": 10.228135532152574
     },
     {
-      "id": "349db514d64a4f1e91b7afe40460ad3c",
-      "latitude": 63.34608112767531,
-      "longitude": 10.647978113919994
+      "id": "f1f2d80d2ef5466aa138ed3364515bb7",
+      "group_id": "0",
+      "latitude": 63.31829336933219,
+      "longitude": 10.752169809735499
     },
     {
-      "id": "4179bfd1f8ce4a699a8cb288b4cd92de",
-      "latitude": 63.34934053626086,
-      "longitude": 10.478382987746278
+      "id": "00ac68389db54e9ca0c7e167cc7cd641",
+      "group_id": "0",
+      "latitude": 63.39919624440366,
+      "longitude": 10.723876700603983
     }
   ]
 }

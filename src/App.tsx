@@ -8,6 +8,7 @@ import {
 
 import HomePage from './pages/HomePage';
 import SensorPage from './pages/SensorPage';
+import GroupPage from './pages/GroupPage';
 
 function App() {
   return (
@@ -17,7 +18,10 @@ function App() {
           <h1>Iotility</h1>
 
           <Switch>
-            <Route path="/:id">
+            <Route path="/groups/:id">
+              <GroupPage />
+            </Route>
+            <Route path="/sensors/:id">
               <SensorPage />
             </Route>
             <Route path="/">
