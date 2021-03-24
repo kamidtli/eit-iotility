@@ -8,6 +8,7 @@ import Heading from '../components/Heading';
 import ParamGraph from "../components/ParamGraph";
 
 import sensorData from '../data.json';
+import allSensors from '../sensors.json';
 
 type Measurement = {
   date: Date,
@@ -20,6 +21,7 @@ interface SensorPageProps {
 
 interface ISensorData {
   id: string,
+  group_id: string,
   latitude: number,
   longitude: number,
   timestamp: string,
@@ -29,21 +31,36 @@ interface ISensorData {
   turbidity: number
 }
 
+interface ISensors {
+  id: string,
+  group_id: string,
+  latitude: number,
+  longitude: number
+}
+
 function SensorPage() {
 
   const { id } = useParams<SensorPageProps>();
-  const [latitude, setLatitude] = useState<number>(0);
-  const [longitude, setLongitude] = useState<number>(0);
   const [data, setData] = useState<ISensorData[] | null>();
+  const [groupSensors, setGroupSensors] = useState<ISensors | null>();
 
   useEffect(() => {
-    const allData = fetchSensorData(id);
-    if (allData.length > 0) {
-      setLatitude(parseFloat(allData[0].latitude.toFixed(4)));
-      setLongitude(parseFloat(allData[0].longitude.toFixed(4)));
-      setData(allData);
-    }
+    const sensors = fetchGroupSensors(id);
+    let allData: ISensorData[] = [];
+    sensors.forEach((s) => {
+      const sensorData = fetchSensorData(s.id);
+      if (sensorData.length > 0) {
+        allData = allData.concat(sensorData);
+      }
+    })
+    setGroupSensors(sensors);
+    setData(allData);
   }, [id])
+
+  const fetchGroupSensors = (groupId: string) => {
+    const filteredData = allSensors.data.filter(s => s.group_id === groupId);
+    return filteredData;
+  }
 
   const fetchSensorData = (sensorId: string) : ISensorData[] => {
     const filteredData: ISensorData[] = sensorData.data.filter(s => s.id === sensorId);
@@ -128,7 +145,7 @@ function SensorPage() {
       {data ?
         (
         <div>
-          <Heading title="Sensornavn" subtitle={`Koordinater: ${latitude}, ${longitude}`}/>
+          <Heading title="Gruppeoversikt" subtitle={`Gruppe: ${id}`}/>
           <Grid container spacing={3}>
             <Grid item xs={12} lg={6}>
               <ParamGraph title="pH" data={getPh()} id={1}/>

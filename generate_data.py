@@ -16,8 +16,9 @@ class Globals:
     self.TURBIDITY_SHAPE, self.TURBIDITY_SCALE = 1, 1.5  # Source for value range: https://www.lenntech.com/turbidity.htm
 
 class Sensor:
-  def __init__(self, sensor_id, latitude, longitude):
+  def __init__(self, sensor_id, group_id, latitude, longitude):
     self.id = sensor_id
+    self.group_id = group_id
     self.latitude = latitude
     self.longitude = longitude
     self.GLOBALS = Globals()
@@ -25,6 +26,7 @@ class Sensor:
   def take_measurement(self, date):
     measurement = {
       "id": self.id,
+      "group_id": self.group_id,
       "latitude": self.latitude,
       "longitude": self.longitude,
       "timestamp": date,
@@ -88,13 +90,17 @@ if __name__ == "__main__":
 
   num_of_sensors = 5
   sensor_objects = []
+  group_id = get_random_id()
+  group_size = 3
   for i in range(num_of_sensors):
     sensor_id = get_random_id()
     lat = get_random_latitude(g.MIN_COORD, g.MAX_COORD)
     lon = get_random_longitude(g.MIN_COORD, g.MAX_COORD)
 
-    sensors["data"].append({"id": sensor_id, "latitude": lat, "longitude": lon})
-    s = Sensor(sensor_id=sensor_id, latitude=lat, longitude=lon)
+    curr_group_id = group_id if i < group_size else "0"
+
+    sensors["data"].append({"id": sensor_id, "group_id": curr_group_id, "latitude": lat, "longitude": lon})
+    s = Sensor(sensor_id=sensor_id, group_id=curr_group_id, latitude=lat, longitude=lon)
     sensor_objects.append(s)
 
   dates = get_dates(g.START_DATE, g.END_DATE)
