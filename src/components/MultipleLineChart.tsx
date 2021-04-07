@@ -1,4 +1,3 @@
-/* Imports */
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
@@ -7,16 +6,14 @@ import { IMultipleChartData } from "types";
 
 interface LineChartProps {
   data: IMultipleChartData[],
+  numOfValues: number,
   id: number
 }
 
 function MultipleLineChart(props: LineChartProps) {
 
   useEffect(() => {
-    /* Chart code */
-    // Themes begin
     am4core.useTheme(am4themes_animated);
-    // Themes end
 
     am4core.options.autoDispose = true;
 
@@ -30,22 +27,35 @@ function MultipleLineChart(props: LineChartProps) {
 
     chart.yAxes.push(new am4charts.ValueAxis());
 
+    // Create Colorset
+    let colorList = [
+      am4core.color("#ee6352"),
+      am4core.color("#59cd90"),
+      am4core.color("#3fa7d6"),
+      am4core.color("#fac05e"),
+      am4core.color("#473198"),
+    ]
+    let colorSet = new am4core.ColorSet();
+    colorSet.list = colorList
+
     // Create series
-    let series = chart.series.push(new am4charts.LineSeries());
-    series.dataFields.valueY = "value";
-    series.dataFields.dateX = "date";
-    series.tooltipText = "{value}";
-
-    // series.tooltip.pointerOrientation = "vertical";
-
+    for (let i = 0; i < props.numOfValues; i++) {
+      let series = chart.series.push(new am4charts.LineSeries());
+      let color = colorSet.next();
+      series.dataFields.valueY = "value" + (i+1);
+      series.dataFields.dateX = "date";
+      series.tooltipText = "{value}";
+      series.fill = color;
+      series.stroke = color;
+      series.bullets.push(new am4charts.CircleBullet());
+    }
+    
     chart.cursor = new am4charts.XYCursor();
-    chart.cursor.snapToSeries = series;
     chart.cursor.xAxis = dateAxis;
 
-    //chart.scrollbarY = new am4core.Scrollbar();
     chart.scrollbarX = new am4core.Scrollbar();
 
-  }, [props.data, props.id]);
+  }, [props.data, props.id, props.numOfValues]);
 
   return (
     <div id={`chartdiv${props.id}`} style={{ width: "100%", height: "500px" }}></div>

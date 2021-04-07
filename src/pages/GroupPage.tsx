@@ -17,10 +17,12 @@ function GroupPage() {
 
   const { id } = useParams<SensorPageProps>();
   const [data, setData] = useState<IMultipleChartData[] | []>();
+  const [valueCounter, setValueCounter] = useState<number>(0);
 
   useEffect(() => {
     let groupData:{ [timestamp: string]: { [value: string]: {}} } = {}
     const sensors: ISensor[] = getSensorsByGroupId(id);
+    setValueCounter(sensors.length);
     sensors.forEach((s: ISensor, index: number) => {
       const measurements: IMeasurement[] = getAllSensorMeasurementsById(s.id);
       measurements.forEach((m: IMeasurement) => {
@@ -53,7 +55,7 @@ function GroupPage() {
           <Heading title="Gruppeoversikt" subtitle={`Gruppe: ${id}`}/>
           <Grid container spacing={3}>
             <Grid item xs={12} lg={6}>
-              <ParamGraphMultiple title="pH" data={data} id={1}/>
+              <ParamGraphMultiple title="pH" data={data} numOfValues={valueCounter} id={1}/>
             </Grid>
           </Grid>
         </div>

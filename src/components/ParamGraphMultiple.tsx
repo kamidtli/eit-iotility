@@ -5,6 +5,7 @@ import { IMultipleChartData } from 'types';
 
 interface ParamGraphProps {
   title: string,
+  numOfValues: number,
   data: IMultipleChartData[],
   id: number
 }
@@ -15,7 +16,7 @@ function ParamGraph(props: ParamGraphProps) {
     <CustomCard>
       <CardContent>
         <CardHeader title={props.title} />
-        <MultipleLineChart data={props.data} id={props.id} />
+        <MultipleLineChart data={props.data} numOfValues={props.numOfValues} id={props.id} />
       </CardContent>
     </CustomCard>
   )
