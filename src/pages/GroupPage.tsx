@@ -4,7 +4,8 @@ import {
   useParams
 } from "react-router-dom";
 import styled from 'styled-components';
-import { Grid, CircularProgress } from '@material-ui/core';
+import { Grid, Button, CircularProgress } from '@material-ui/core';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { ISensor, IGroup, IMeasurement, IMultipleChartData } from 'types';
 import { getAllSensorMeasurementsById, getSensorsByGroupId, getGroupById } from 'utils';
 import Heading from 'components/Heading';
@@ -57,7 +58,9 @@ function GroupPage() {
 
   return (
     <div>
-      <Link to="/">Tilbake til sensorkart</Link>
+      <Button component={ Link } to="/" startIcon={<ArrowBackIcon />}>
+        Tilbake til sensorkart
+      </Button>
       {sensors ?
         (
         <div>

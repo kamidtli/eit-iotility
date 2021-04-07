@@ -3,7 +3,8 @@ import {
   Link,
   useParams
 } from "react-router-dom";
-import { CircularProgress, Grid } from '@material-ui/core';
+import { Button, CircularProgress, Grid } from '@material-ui/core';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Heading from 'components/Heading';
 import ParamGraph from "components/ParamGraph";
 import { ISensor, IMeasurement, IParamMeasurement } from 'types';
@@ -51,7 +52,9 @@ function SensorPage() {
 
   return (
     <div>
-      <Link to="/">Tilbake til sensorkart</Link>
+      <Button component={ Link } to="/" startIcon={<ArrowBackIcon />}>
+        Tilbake til sensorkart
+      </Button>
       {data ?
         (
         <div>
