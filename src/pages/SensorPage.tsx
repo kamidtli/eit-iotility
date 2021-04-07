@@ -3,7 +3,7 @@ import {
   Link,
   useParams
 } from "react-router-dom";
-import { Grid } from '@material-ui/core';
+import { CircularProgress, Grid } from '@material-ui/core';
 import Heading from 'components/Heading';
 import ParamGraph from "components/ParamGraph";
 import { ISensor, IMeasurement, IParamMeasurement } from 'types';
@@ -72,7 +72,10 @@ function SensorPage() {
           </Grid>
         </div>
         ) : (
-          <h1>Fant ikke noe data for denne sensoren.</h1>
+          <div>
+            <Heading subtitle="Henter måledata..." />
+            <CircularProgress />
+          </div>
         )}
     </div>
   );

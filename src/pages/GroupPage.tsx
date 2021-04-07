@@ -4,7 +4,7 @@ import {
   useParams
 } from "react-router-dom";
 import styled from 'styled-components';
-import { Grid } from '@material-ui/core';
+import { Grid, CircularProgress } from '@material-ui/core';
 import { ISensor, IGroup, IMeasurement, IMultipleChartData } from 'types';
 import { getAllSensorMeasurementsById, getSensorsByGroupId, getGroupById } from 'utils';
 import Heading from 'components/Heading';
@@ -90,7 +90,10 @@ function GroupPage() {
           </Grid>
         </div>
         ) : (
-          <h1>Fant ikke noe data for denne gruppen.</h1>
+          <div>
+            <Heading subtitle="Henter måledata..." />
+            <CircularProgress />
+          </div>
         )}
     </div>
   );
