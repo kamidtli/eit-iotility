@@ -6,8 +6,8 @@ import {
 import { Grid } from '@material-ui/core';
 import Heading from 'components/Heading';
 import ParamGraph from "components/ParamGraph";
-import { IMeasurement, IParamMeasurement } from 'types';
-import { getAllSensorMeasurementsById } from "utils";
+import { ISensor, IMeasurement, IParamMeasurement } from 'types';
+import { getSensorById, getAllSensorMeasurementsById } from "utils";
 
 interface SensorPageProps {
   id: string
@@ -16,15 +16,14 @@ interface SensorPageProps {
 function SensorPage() {
 
   const { id } = useParams<SensorPageProps>();
-  const [latitude, setLatitude] = useState<number>(0);
-  const [longitude, setLongitude] = useState<number>(0);
+  const [sensor, setSensor] = useState<ISensor>();
   const [data, setData] = useState<IMeasurement[] | null>();
 
   useEffect(() => {
+    const sensor = getSensorById(id);
+    setSensor(sensor);
     const allData = getAllSensorMeasurementsById(id);
     if (allData.length > 0) {
-      setLatitude(parseFloat(allData[0].latitude.toFixed(4)));
-      setLongitude(parseFloat(allData[0].longitude.toFixed(4)));
       setData(allData);
     }
   }, [id])
@@ -56,7 +55,7 @@ function SensorPage() {
       {data ?
         (
         <div>
-          <Heading title="Sensornavn" subtitle={`Koordinater: ${latitude}, ${longitude}`}/>
+          <Heading title={sensor?.name} subtitle={`Koordinater: ${sensor?.latitude.toFixed(4)}, ${sensor?.longitude.toFixed(4)}`}/>
           <Grid container spacing={3}>
             <Grid item xs={12} lg={6}>
               <ParamGraph title="pH" data={getParam("pH")} id={1}/>

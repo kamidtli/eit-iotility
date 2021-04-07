@@ -1,13 +1,13 @@
+import { ISensor } from "types";
+
 type SensorProps = {
-  id: string,
-  latitude: number,
-  longitude: number
+  sensor: ISensor,
 }
 
 function Sensor(props: SensorProps) {
 
   return (
-    <div>({parseFloat(props.latitude.toFixed(4))}, {parseFloat(props.longitude.toFixed(4))})</div>
+    <div>{props.sensor.name} ({parseFloat(props.sensor.latitude.toFixed(4))}, {parseFloat(props.sensor.longitude.toFixed(4))})</div>
   )
 
 }

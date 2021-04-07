@@ -2,30 +2,30 @@ import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import Sensor from 'components/Sensor';
 import Heading from 'components/Heading';
-import { ISensor } from 'types';
-import { getAllSensors, getAllGroupIds } from 'utils';
+import { ISensor, IGroup } from 'types';
+import { getAllSensors, getAllGroups } from 'utils';
 
 function HomePage() {
   const [sensors, setSensors] = useState<ISensor[] | []>();
-  const [groups, setGroups] = useState<string[] | []>();
+  const [groups, setGroups] = useState<IGroup[] | []>();
 
   useEffect(() => {
     setSensors(getAllSensors())
-    setGroups(getAllGroupIds());
+    setGroups(getAllGroups());
   }, [])
 
   return (
     <div>
-      <Heading title="Sensorer" subtitle="Klikk på en sensor for mer informasjon" />
+      <Heading title="Målepunkter" subtitle="Klikk på et målepunkt for mer informasjon" />
       {sensors && sensors.map((s: ISensor) => (
         <Link to={`/sensors/${s.id}`} key={s.id}>
-          <Sensor id={s.id} latitude={s.latitude} longitude={s.longitude} />
+          <Sensor sensor={s} />
         </Link>
       ))}
-      <Heading title="Sensorgrupper" subtitle="Klikk på en gruppe for mer informasjon" />
-      {groups && groups.map((s: string) => (
-        <Link to={`/groups/${s}`} key={s}>
-          {s}
+      <Heading title="Grupper" subtitle="Klikk på en gruppe for mer informasjon" />
+      {groups && groups.map((s: IGroup) => (
+        <Link to={`/groups/${s.id}`} key={s.id}>
+          {s.name}<br />
         </Link>
       ))}
     </div>

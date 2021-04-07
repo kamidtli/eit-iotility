@@ -3,6 +3,7 @@ import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import { useEffect } from "react";
 import { IMultipleChartData } from "types";
+import { chartColors } from "static";
 
 interface LineChartProps {
   data: IMultipleChartData[],
@@ -28,15 +29,8 @@ function MultipleLineChart(props: LineChartProps) {
     chart.yAxes.push(new am4charts.ValueAxis());
 
     // Create Colorset
-    let colorList = [
-      am4core.color("#ee6352"),
-      am4core.color("#59cd90"),
-      am4core.color("#3fa7d6"),
-      am4core.color("#fac05e"),
-      am4core.color("#473198"),
-    ]
     let colorSet = new am4core.ColorSet();
-    colorSet.list = colorList
+    colorSet.list = chartColors.map((c: string) => am4core.color(c))
 
     // Create series
     for (let i = 0; i < props.numOfValues; i++) {

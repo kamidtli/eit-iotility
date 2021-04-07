@@ -24,7 +24,7 @@ function ParamGraph(props: ParamGraphProps) {
   return (
     <CustomCard>
       <CardContent>
-        <CardHeader title={props.title} />
+        <CardHeader title={props.title} subheader={props.data.length > 0 ? `Siste måling: ${props.data[0].value}` : ""}/>
         <LineChart data={processData(props.data)} id={props.id} />
       </CardContent>
     </CustomCard>

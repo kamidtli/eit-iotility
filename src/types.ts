@@ -1,8 +1,15 @@
 export interface ISensor {
   id: string,
+  name: string,
   group_id: string,
+  group_name: string,
   latitude: number,
   longitude: number
+}
+
+export interface IGroup {
+  id: string,
+  name: string,
 }
 
 export interface IMeasurement {

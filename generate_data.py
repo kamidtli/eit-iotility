@@ -88,18 +88,56 @@ if __name__ == "__main__":
   data = {"data": []}
   sensors = {"data": []}
 
-  num_of_sensors = 5
+  sensor_names = [
+    "Amundsbekken",
+    "Litjelva",
+    "Rangaaa",
+    "Brunga",
+    "Daannoeyelva",
+    "Tangvolla",
+    "Drakstelva",
+    "Haannaaa",
+    "Renaaa",
+    "Tverrelva",
+    "Slindelva",
+    "Gullsetelva",
+    "Brandelva",
+    "Naala",
+    "Nea",
+    "Bogstadelva",
+    "Moelnaaa",
+    "Rotla",
+    "Krossaaa",
+    "Fongaaa",
+    "Ramaaa",
+    "Fagermoa",
+  ]
+
+  group_names = [
+    "Ila",
+    "Klaebu",
+    "Jonsvannet",
+    "Nidelva"
+  ]
+
+  num_of_sensors = 10
+  assert(num_of_sensors <= len(sensor_names))
   sensor_objects = []
-  group_id = get_random_id()
-  group_size = 3
+  num_of_groups = 4
+  group_ids = [get_random_id() for x in range(num_of_groups)]
+  group_names_mapping = {group_ids[i]: group_names[i] for i in range(len(group_ids))}
+
   for i in range(num_of_sensors):
     sensor_id = get_random_id()
+    sensor_name = sensor_names[i]
     lat = get_random_latitude(g.MIN_COORD, g.MAX_COORD)
     lon = get_random_longitude(g.MIN_COORD, g.MAX_COORD)
 
-    curr_group_id = group_id if i < group_size else "0"
+    # A percentage of sensors get assigned to a random group, the remainding sensors have no group
+    curr_group_id = random.choice(group_ids) if random.uniform(0,1) < 0.7 else "0"
+    curr_group_name = group_names_mapping.get(curr_group_id, "")
 
-    sensors["data"].append({"id": sensor_id, "group_id": curr_group_id, "latitude": lat, "longitude": lon})
+    sensors["data"].append({"id": sensor_id, "name": sensor_name, "group_id": curr_group_id, "group_name":curr_group_name, "latitude": lat, "longitude": lon})
     s = Sensor(sensor_id=sensor_id, group_id=curr_group_id, latitude=lat, longitude=lon)
     sensor_objects.append(s)
 

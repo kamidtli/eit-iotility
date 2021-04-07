@@ -4,9 +4,10 @@ import {
   useParams
 } from "react-router-dom";
 import { Grid } from '@material-ui/core';
-import { ISensor, IMeasurement, IMultipleChartData } from 'types';
-import { getAllSensorMeasurementsById, getSensorsByGroupId } from 'utils';
+import { ISensor, IGroup, IMeasurement, IMultipleChartData } from 'types';
+import { getAllSensorMeasurementsById, getSensorsByGroupId, getGroupById } from 'utils';
 import Heading from 'components/Heading';
+import Sensor from 'components/Sensor';
 import ParamGraphMultiple from "components/ParamGraphMultiple";
 
 interface SensorPageProps {
@@ -17,12 +18,13 @@ function GroupPage() {
 
   const { id } = useParams<SensorPageProps>();
   const [data, setData] = useState<IMultipleChartData[] | []>();
+  const [sensors, setSensors] = useState<ISensor[] | []>();
   const [valueCounter, setValueCounter] = useState<number>(0);
+  const [group, setGroup] = useState<IGroup>();
 
   useEffect(() => {
     let groupData:{ [timestamp: string]: { [value: string]: {}} } = {}
     const sensors: ISensor[] = getSensorsByGroupId(id);
-    setValueCounter(sensors.length);
     sensors.forEach((s: ISensor, index: number) => {
       const measurements: IMeasurement[] = getAllSensorMeasurementsById(s.id);
       measurements.forEach((m: IMeasurement) => {
@@ -44,6 +46,9 @@ function GroupPage() {
       }
     }
     setData(finalData);
+    setSensors(sensors);
+    setValueCounter(sensors.length);
+    setGroup(getGroupById(id));
   }, [id])
 
   return (
@@ -52,10 +57,20 @@ function GroupPage() {
       {data ?
         (
         <div>
-          <Heading title="Gruppeoversikt" subtitle={`Gruppe: ${id}`}/>
+          <Heading title={group && group.name} />
           <Grid container spacing={3}>
             <Grid item xs={12} lg={6}>
               <ParamGraphMultiple title="pH" data={data} numOfValues={valueCounter} id={1}/>
+            </Grid>
+            <Grid item xs={12}>
+              <Heading subtitle="Sensorer i denne gruppen" />
+              {sensors && sensors.map((s: ISensor) => {
+                return (
+                  <Link to={`/sensors/${s.id}`} key={s.id}>
+                    <Sensor sensor={s} />
+                  </Link>
+                )
+              })}
             </Grid>
           </Grid>
         </div>

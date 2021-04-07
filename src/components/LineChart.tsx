@@ -4,6 +4,7 @@ import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import { useEffect } from "react";
 import { IChartData } from "types";
+import { chartColors } from "static";
 
 interface LineChartProps {
   data: IChartData[],
@@ -30,11 +31,20 @@ function LineChart(props: LineChartProps) {
 
     chart.yAxes.push(new am4charts.ValueAxis());
 
+    // Create Colorset
+    let colorSet = new am4core.ColorSet();
+    colorSet.list = chartColors.map((c: string) => am4core.color(c))
+
+    const color = colorSet.next();
+
     // Create series
     let series = chart.series.push(new am4charts.LineSeries());
     series.dataFields.valueY = "value";
     series.dataFields.dateX = "date";
     series.tooltipText = "{value}";
+    series.fill = color;
+    series.stroke = color;
+    series.bullets.push(new am4charts.CircleBullet());
 
     // series.tooltip.pointerOrientation = "vertical";
 

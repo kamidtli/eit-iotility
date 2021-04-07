@@ -2,14 +2,14 @@
 
 import DATA_DB from 'data.json';
 import SENSORS_DB from 'sensors.json';
-import { ISensor, IMeasurement, IParamMeasurement } from 'types';
+import { ISensor, IGroup, IMeasurement, IParamMeasurement } from 'types';
 
 export function getAllSensors() : ISensor[] {
   return SENSORS_DB.data;
 }
 
-export function getSensorById(id: string) : ISensor[] {
-  return SENSORS_DB.data.filter((s: ISensor) => s.id === id);
+export function getSensorById(id: string) : ISensor {
+  return SENSORS_DB.data.filter((s: ISensor) => s.id === id)[0];
 }
 
 export function getSensorsByGroupId(groupId: string) : ISensor[] {
@@ -37,8 +37,37 @@ export function getAllGroupIds() : string[] {
   return removeDuplicates(groupIds);
 }
 
+export function getAllGroups() : IGroup[] {
+  const groups = SENSORS_DB.data.filter((s: ISensor) => s.group_id !== "0").map(s => {
+    return {
+      id: s.group_id,
+      name: s.group_name
+    }
+  });
+  return removeDuplicatesById(groups);
+}
+
+export function getGroupById(id: string) : IGroup | undefined {
+  const sensorsInGroup = getSensorsByGroupId(id);
+  if (sensorsInGroup.length > 0) {
+    let sensor = sensorsInGroup[0];
+    return {
+      id: sensor.group_id,
+      name: sensor.group_name
+    }
+  }
+}
+
 function removeDuplicates<T>(arr : T[]) : T[] {
   return arr.filter((elem, index, self) => {
     return index === self.indexOf(elem);
   });
+}
+
+function removeDuplicatesById(arr : IGroup[]) : IGroup[] {
+  return arr.filter((elem, index, self) =>
+    index === self.findIndex((t) => {
+      return t.id === elem.id
+    })
+  )
 }

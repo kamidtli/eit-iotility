@@ -1,6 +1,6 @@
 interface HeadingProps {
-  title: string,
-  subtitle: string
+  title?: string,
+  subtitle?: string
 }
 
 function Heading(props: HeadingProps) {
