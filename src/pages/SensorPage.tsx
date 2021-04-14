@@ -6,6 +6,7 @@ import {
 import { Button, CircularProgress, Grid } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Heading from 'components/Heading';
+import SimpleMap from 'components/SimpleMap';
 import ParamGraph from "components/ParamGraph";
 import { ISensor, IMeasurement, IParamMeasurement } from 'types';
 import { getSensorById, getAllSensorMeasurementsById } from "utils";
@@ -71,6 +72,17 @@ function SensorPage() {
             </Grid>
             <Grid item xs={12} lg={6}>
               <ParamGraph title="Konduktivitet" data={getParam("conductivity")} id={4}/>
+            </Grid>
+            <Grid item xs={12}>
+              {sensor && 
+                <SimpleMap 
+                data={[sensor]}
+                center={{
+                  lat: sensor.latitude,
+                  lng: sensor.longitude
+                }}
+                />
+              }
             </Grid>
           </Grid>
         </div>
