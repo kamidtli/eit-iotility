@@ -59,16 +59,26 @@ function SensorPage() {
       {data ?
         (
         <div>
-          <Heading title={sensor?.name} />
-          {
-            sensor?.group_id !== "0" && (
-              <Button component={ Link } to={`/groups/${sensor?.group_id}`}>
-                Se hele gruppen
-              </Button>
-            )
-          }
-          
           <Grid container spacing={3}>
+            <Grid 
+              container item xs={12}
+              direction="row"
+              justify="space-between"
+              alignItems="center"
+            >
+              <Grid item>
+                <Heading title={sensor?.name} />
+              </Grid>
+              <Grid item>
+                {
+                  sensor?.group_id !== "0" && (
+                    <Button component={ Link } to={`/groups/${sensor?.group_id}`} variant="contained" color="primary">
+                      Se hele gruppen
+                    </Button>
+                  )
+                }
+              </Grid>
+            </Grid>
             <Grid item xs={12} lg={6}>
               <ParamGraph title="pH" data={getParam("pH")} id={1}/>
             </Grid>
