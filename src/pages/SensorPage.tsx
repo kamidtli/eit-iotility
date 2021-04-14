@@ -59,7 +59,15 @@ function SensorPage() {
       {data ?
         (
         <div>
-          <Heading title={sensor?.name} subtitle={`Koordinater: ${sensor?.latitude.toFixed(4)}, ${sensor?.longitude.toFixed(4)}`}/>
+          <Heading title={sensor?.name} />
+          {
+            sensor?.group_id !== "0" && (
+              <Button component={ Link } to={`/groups/${sensor?.group_id}`}>
+                Se hele gruppen
+              </Button>
+            )
+          }
+          
           <Grid container spacing={3}>
             <Grid item xs={12} lg={6}>
               <ParamGraph title="pH" data={getParam("pH")} id={1}/>
