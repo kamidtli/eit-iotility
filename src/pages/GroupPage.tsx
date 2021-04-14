@@ -9,7 +9,6 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { ISensor, IGroup, IMeasurement, IMultipleChartData } from 'types';
 import { getAllSensorMeasurementsById, getSensorsByGroupId, getGroupById } from 'utils';
 import Heading from 'components/Heading';
-import Sensor from 'components/Sensor';
 import SimpleMap from 'components/SimpleMap';
 import ParamGraphMultiple from "components/ParamGraphMultiple";
 import { chartColors } from "static";
@@ -67,15 +66,20 @@ function GroupPage() {
         <div>
           <Heading title={group && group.name} />
           <Grid container spacing={3}>
-            <Grid item xs={12}>
+            <Grid 
+              container item xs={12}
+              spacing={1}
+              direction="row"
+              justify="flex-start"
+              alignItems="center"
+            >
               {sensors && sensors.map((s: ISensor, index: number) => {
                 return (
-                  <DotLink key={s.id}>
-                    <ColorDot color={chartColors[index]} />
-                    <Link to={`/sensors/${s.id}`}>
-                      <Sensor sensor={s} />
-                    </Link>
-                  </DotLink>
+                  <Grid item key={s.id}>
+                    <Button component={ Link } to={`/sensors/${s.id}`} variant="outlined" startIcon={<ColorDot color={chartColors[index]} />}>
+                      {s.name}
+                    </Button>
+                  </Grid>
                 )
               })}
             </Grid>
@@ -109,12 +113,6 @@ function GroupPage() {
     </div>
   );
 }
-
-const DotLink = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
 
 const ColorDot = styled.div`
   margin-right: 10px;
