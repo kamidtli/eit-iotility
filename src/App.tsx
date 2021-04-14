@@ -6,29 +6,29 @@ import {
   Route,
 } from "react-router-dom";
 
-import HomePage from './pages/HomePage';
-import SensorPage from './pages/SensorPage';
-import GroupPage from './pages/GroupPage';
+import HomePage from 'pages/HomePage';
+import SensorPage from 'pages/SensorPage';
+import GroupPage from 'pages/GroupPage';
+
+import ScrollToTop from 'components/ScrollToTop';
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <div>
-          <h1>Iotility</h1>
-
-          <Switch>
-            <Route path="/groups/:id">
-              <GroupPage />
-            </Route>
-            <Route path="/sensors/:id">
-              <SensorPage />
-            </Route>
-            <Route path="/">
-              <HomePage />
-            </Route>
-          </Switch>
-        </div>
+        <h1>Iotility</h1>
+        <ScrollToTop />
+        <Switch>
+          <Route path="/groups/:id">
+            <GroupPage />
+          </Route>
+          <Route path="/sensors/:id">
+            <SensorPage />
+          </Route>
+          <Route path="/">
+            <HomePage />
+          </Route>
+        </Switch>
       </Router>
     </div>
   );
