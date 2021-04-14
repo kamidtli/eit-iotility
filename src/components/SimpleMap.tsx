@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
 import GoogleMapReact from 'google-map-react';
 import { ISensor } from 'types';
+import { Tooltip } from '@material-ui/core';
 import { WifiTethering } from '@material-ui/icons';
  
-const Marker = (props: {id: string, lat: number, lng: number}) => {
+const Marker = (props: {id: string, lat: number, lng: number, name: string}) => {
   return (
     <Link to={`/sensors/${props.id}`} key={props.id}>
-      <WifiTethering htmlColor="#FFFFFF"/>
+      <Tooltip title={props.name} placement="top">
+        <WifiTethering htmlColor="#FFFFFF"/>
+      </Tooltip>
     </Link>
   );
 }
@@ -32,6 +35,7 @@ function SimpleMap(props: {data: ISensor[] | [] | undefined, center?: {lat: numb
             lat={s.latitude}
             lng={s.longitude}
             key={s.id}
+            name={s.name}
           />
         ))}
       </GoogleMapReact>
