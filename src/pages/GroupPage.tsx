@@ -70,9 +70,9 @@ function GroupPage() {
             <Grid item xs={12}>
               {sensors && sensors.map((s: ISensor, index: number) => {
                 return (
-                  <DotLink>
+                  <DotLink key={s.id}>
                     <ColorDot color={chartColors[index]} />
-                    <Link to={`/sensors/${s.id}`} key={s.id}>
+                    <Link to={`/sensors/${s.id}`}>
                       <Sensor sensor={s} />
                     </Link>
                   </DotLink>
