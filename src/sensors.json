@@ -4,7 +4,7 @@
       "id": "a9e145feb3de4f28ab86d4b7a215476d",
       "name": "Amundsbekken",
       "group_id": "b83d7bf3a66d419d96d95e09b23c1351",
-      "group_name": "Klaebu",
+      "group_name": "Klæbu",
       "latitude": 63.381255538866064,
       "longitude": 10.22558701153526
     },
@@ -12,13 +12,13 @@
       "id": "c15153c29306452699f6ca10f5345524",
       "name": "Litjelva",
       "group_id": "b83d7bf3a66d419d96d95e09b23c1351",
-      "group_name": "Klaebu",
+      "group_name": "Klæbu",
       "latitude": 63.378442776939266,
       "longitude": 10.701963139925656
     },
     {
       "id": "d109b159e7424745a0f5d56b2ce068ca",
-      "name": "Rangaaa",
+      "name": "Rangåa",
       "group_id": "0",
       "group_name": "",
       "latitude": 63.279581935725076,
@@ -34,7 +34,7 @@
     },
     {
       "id": "d295dcf7823947cca331739375ae05c3",
-      "name": "Daannoeyelva",
+      "name": "Dånnøyelva",
       "group_id": "206d97ccf1824e999a14bb80239fd5e4",
       "group_name": "Nidelva",
       "latitude": 63.42229808995452,
@@ -58,7 +58,7 @@
     },
     {
       "id": "a6de8d8813bf4a92b97540d3c15d782c",
-      "name": "Haannaaa",
+      "name": "Hånnåa",
       "group_id": "206d97ccf1824e999a14bb80239fd5e4",
       "group_name": "Nidelva",
       "latitude": 63.4471846659927,
@@ -66,7 +66,7 @@
     },
     {
       "id": "6aaebac66ca548749c21e089ae9c7568",
-      "name": "Renaaa",
+      "name": "Renåa",
       "group_id": "f3f433ff52c6445da41675b37a8fe0cb",
       "group_name": "Ila",
       "latitude": 63.33564471335845,
