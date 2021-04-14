@@ -2,52 +2,47 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
 } from "react-router-dom";
 import styled from 'styled-components';
+import { Container } from '@material-ui/core';
 
 import HomePage from 'pages/HomePage';
 import SensorPage from 'pages/SensorPage';
 import GroupPage from 'pages/GroupPage';
-
+import LogoHeader from 'components/LogoHeader';
 import ScrollToTop from 'components/ScrollToTop';
 
-import logo from 'assets/logo.png';
 
 function App() {
   return (
     <AppContainer>
       <Router>
-        <LogoHeader>
-          <Link to="/">
-            <img src={logo} alt="logo" width={100} height={100}/>
-          </Link>
-        </LogoHeader>
+        <LogoHeader />
         <ScrollToTop />
-        <Switch>
-          <Route path="/groups/:id">
-            <GroupPage />
-          </Route>
-          <Route path="/sensors/:id">
-            <SensorPage />
-          </Route>
-          <Route path="/">
-            <HomePage />
-          </Route>
-        </Switch>
+        <ContentContainer maxWidth="lg">
+          <Switch>
+            <Route path="/groups/:id">
+              <GroupPage />
+            </Route>
+            <Route path="/sensors/:id">
+              <SensorPage />
+            </Route>
+            <Route path="/">
+              <HomePage />
+            </Route>
+          </Switch>
+        </ContentContainer>
       </Router>
     </AppContainer>
   );
 }
 
-const LogoHeader = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-`;
 const AppContainer = styled.div`
-  margin: 32px 128px 128px 128px;
+  background-color: #F5F5F5;
+`;
+
+const ContentContainer = styled(Container)`
+  padding: 16px 0 128px 0;
 `;
 
 export default App;
