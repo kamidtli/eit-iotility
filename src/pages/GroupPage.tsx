@@ -10,6 +10,7 @@ import { ISensor, IGroup, IMeasurement, IMultipleChartData } from 'types';
 import { getAllSensorMeasurementsById, getSensorsByGroupId, getGroupById } from 'utils';
 import Heading from 'components/Heading';
 import Sensor from 'components/Sensor';
+import SimpleMap from 'components/SimpleMap';
 import ParamGraphMultiple from "components/ParamGraphMultiple";
 import { chartColors } from "static";
 
@@ -89,6 +90,13 @@ function GroupPage() {
             </Grid>
             <Grid item xs={12} lg={6}>
               <ParamGraphMultiple title="Konduktivitet" data={getParam("conductivity")} numOfValues={valueCounter} id={4}/>
+            </Grid>
+            <Grid item xs={12}>
+              {sensors && 
+                <SimpleMap 
+                  data={sensors}
+                />
+              }
             </Grid>
           </Grid>
         </div>
