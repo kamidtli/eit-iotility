@@ -3,50 +3,50 @@
     {
       "id": "a9e145feb3de4f28ab86d4b7a215476d",
       "name": "Amundsbekken",
-      "group_id": "b83d7bf3a66d419d96d95e09b23c1351",
-      "group_name": "Klæbu",
+      "group_id": "0",
+      "group_name": "",
       "latitude": 63.381255538866064,
       "longitude": 10.22558701153526
     },
     {
       "id": "c15153c29306452699f6ca10f5345524",
-      "name": "Litjelva",
-      "group_id": "b83d7bf3a66d419d96d95e09b23c1351",
-      "group_name": "Klæbu",
-      "latitude": 63.378442776939266,
-      "longitude": 10.701963139925656
+      "name": "Foldsjøen",
+      "group_id": "0",
+      "group_name": "",
+      "latitude": 63.334809,
+      "longitude": 10.770496
     },
     {
       "id": "d109b159e7424745a0f5d56b2ce068ca",
       "name": "Rangåa",
-      "group_id": "0",
-      "group_name": "",
+      "group_id": "18fe139488c74d7889895f249196023c",
+      "group_name": "Selbusjøen",
       "latitude": 63.279581935725076,
       "longitude": 10.708137441065212
     },
     {
       "id": "8a9cc90755874535b935804ac1b9fd97",
-      "name": "Brunga",
-      "group_id": "0",
-      "group_name": "",
-      "latitude": 63.34250149601954,
-      "longitude": 10.730686963988104
+      "name": "Nyhavna",
+      "group_id": "206d97ccf1824e999a14bb80239fd5e4",
+      "group_name": "Nidelva",
+      "latitude": 63.438576, 
+      "longitude": 10.410093
     },
     {
       "id": "d295dcf7823947cca331739375ae05c3",
-      "name": "Dånnøyelva",
+      "name": "Lerkendal",
       "group_id": "206d97ccf1824e999a14bb80239fd5e4",
       "group_name": "Nidelva",
-      "latitude": 63.42229808995452,
-      "longitude": 10.532645155540068
+      "latitude": 63.413211,
+      "longitude": 10.394500
     },
     {
       "id": "ecbc744035e748ce9a62616a1c1461bc",
-      "name": "Tangvolla",
-      "group_id": "0",
-      "group_name": "",
-      "latitude": 63.413245518369884,
-      "longitude": 10.636116076379091
+      "name": "Vikåsen",
+      "group_id": "f3f433ff52c6445da41675b37a8fe0cb",
+      "group_name": "Jonsvatnet",
+      "latitude": 63.411156,
+      "longitude": 10.540679
     },
     {
       "id": "b0caf30ac2824f849d6dc77296be79e6",
@@ -58,25 +58,25 @@
     },
     {
       "id": "a6de8d8813bf4a92b97540d3c15d782c",
-      "name": "Hånnåa",
+      "name": "Øya",
       "group_id": "206d97ccf1824e999a14bb80239fd5e4",
       "group_name": "Nidelva",
-      "latitude": 63.4471846659927,
-      "longitude": 10.518914826009738
+      "latitude": 63.426353,
+      "longitude": 10.373346
     },
     {
       "id": "6aaebac66ca548749c21e089ae9c7568",
-      "name": "Renåa",
+      "name": "Jonsvatnet",
       "group_id": "f3f433ff52c6445da41675b37a8fe0cb",
-      "group_name": "Ila",
-      "latitude": 63.33564471335845,
-      "longitude": 10.585301786834862
+      "group_name": "Jonsvatnet",
+      "latitude": 63.385891, 
+      "longitude": 10.547753
     },
     {
       "id": "05ed7df3ba9e42fe812dcad72f99e11f",
       "name": "Tverrelva",
       "group_id": "18fe139488c74d7889895f249196023c",
-      "group_name": "Jonsvannet",
+      "group_name": "Selbusjøen",
       "latitude": 63.29117761313948,
       "longitude": 10.71061089933206
     }
