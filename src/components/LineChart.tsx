@@ -23,7 +23,7 @@ function LineChart(props: LineChartProps) {
 
     let chart = am4core.create(`chartdiv${props.id}`, am4charts.XYChart);
 
-    chart.data = props.data;
+    chart.data = props.data.reverse();
 
     // Create axes
     let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
